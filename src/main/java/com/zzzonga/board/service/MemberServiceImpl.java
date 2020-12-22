@@ -4,6 +4,7 @@ import com.zzzonga.board.domain.MemberDTO;
 import com.zzzonga.board.mapper.MemberMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 @Service
 public class MemberServiceImpl implements MemberService{
 
@@ -14,7 +15,13 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public MemberDTO login() {
-        return null;
+    public List<MemberDTO> selectAllUser() {
+        return memberMapper.selectAllMember();
+    }
+
+    @Override
+    public MemberDTO login(MemberDTO memberDTO) {
+        System.out.println(memberDTO.toString());
+        return memberMapper.selectCheckMember(memberDTO);
     }
 }

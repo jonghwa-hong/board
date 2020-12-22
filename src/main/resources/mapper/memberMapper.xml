@@ -2,10 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.zzzonga.board.mapper.MemberMapper">
+    <resultMap id="memberMap-result" type="com.zzzonga.board.domain.MemberDTO">
+        <id property="memberId" column="member_id"/>
+        <result property="memberName" column="member_name"/>
+    </resultMap>
 
-    <select id="selectMember" parameterType="com.zzzonga.board.domain.MemberDTO" resultType="com.zzzonga.board.domain.MemberDTO">
+    <select id="selectCheckMember" parameterType="com.zzzonga.board.domain.MemberDTO" resultMap="memberMap-result">
         <![CDATA[
+        SELECT member_id, member_name
+        FROM member
+        WHERE member_id = #{memberId}
+          AND member_pw = #{memberPw}
+        ]]>
+    </select>
 
+    <select id="selectAllMember" resultMap="memberMap-result">
+        <![CDATA[
+        SELECT member_id, member_name
+        FROM member
         ]]>
     </select>
 </mapper>

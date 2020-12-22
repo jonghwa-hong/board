@@ -1,5 +1,6 @@
 package com.zzzonga.board.interceptor;
 
+import jdk.swing.interop.SwingInterOpUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,7 +15,7 @@ public class LogInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
         String url = request.getRequestURI();
-        log.info(url);
+        System.out.println(url);
         return true;
     }
 
@@ -22,5 +23,7 @@ public class LogInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request,
                            HttpServletResponse response,
                            Object handler, ModelAndView modelAndView) throws Exception {
+
+        System.out.println(request.getSession());
     }
 }
